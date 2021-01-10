@@ -1,0 +1,103 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using System.Web.Optimization
+@model Review.Web.Models.HomeModel
+<h2>Оставить отзыв</h2>
+<br />
+<form method="post" action="" class="needs-validation" id="validation" novalidate>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationCustom01">Имя пользователя <sup class="required">*</sup></label>
+            <input type="text" class="form-control" placeholder="Имя пользователя" aria-label="Имя пользователя" id="UserName" required>
+            <div class="invalid-feedback">
+                Пожалуйста введите имя пользователя.
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationCustom02">Название организации <sup class="required">*</sup></label>
+            <input type="text" class="form-control" placeholder="Название организации" aria-label="Название организации" id="Organization" required>
+            <div class="invalid-feedback">
+                Пожалуйста укажите организацию.
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationCustomAddress">Адрес организации</label>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Адрес организации" aria-label="Адрес организации" id="Address">
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationCustom03">Что понравилось? <sup class="required">*</sup></label>
+            <textarea class="form-control text-area create-review-scroll layout-cell" placeholder="Что понравилось?" aria-label="Что понравилось?" id="LikeMessage" required></textarea>
+            <div class="invalid-feedback">
+                Пожалуйста заполните поле.
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationCustom04">Что не понравилось?</label>
+            <textarea class="form-control text-area" placeholder="Что не понравилось?" aria-label="Что не понравилось?" id="DislikeMessage"></textarea>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationCustom05">Комментарии</label>
+            <textarea class="form-control text-area" placeholder="Комментарии" aria-label="Комментарии" id="Comment" name="Comment"></textarea>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label>Оценка <sup class="required">*</sup></label>
+            <select class="custom-select" id="Rate">
+                <option value="Оценка" disabled>Оценка</option>
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Отправить</button>
+</form>
+
+@section Scripts{
+    <script type="text/javascript">
+    (function () {
+            'use strict';
+             window.addEventListener('load', function () {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();                           
+                        }
+                        if (form.checkValidity() === true) {
+                            event.preventDefault();
+                                var request = new Object();
+                                request.userName = $('#UserName').val();
+                                request.organization = $('#Organization').val();
+                                request.address = $('#Address').val();
+                                request.likeMessage = $('#LikeMessage').val();
+                                request.dislikeMessage = $('#DislikeMessage').val();
+                                request.comment = $('#Comment').val();
+                                request.rate = $('#Rate').val();
+
+                                $.ajax({
+                                  url: '/Home/CreateReview',
+                                  type: 'POST',
+                                  dataType: 'json',
+                                  data: request,
+                                  success: function (result) {
+                                        window.location.href = result.redirectUrl;
+                                                             }
+                                      })
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+    })();
+    </script>
+}

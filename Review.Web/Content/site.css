@@ -1,0 +1,138 @@
+﻿body {
+    background-color: #f2f3f5;
+    position: relative;
+    letter-spacing: 0.25px;
+    min-height: 100%;
+    font-family: sans-serif,  'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial;
+}
+
+.nav-style {
+    background-color: #fff !important;
+}
+
+.content {
+    min-height: 850px;
+    max-width: 1568px;
+    margin: 1.5em auto auto;
+    display: flex;
+    background-color: #fff;
+    box-shadow: 0 1px 5px rgba(0,0,0, .2), 0 2px 2px rgba(0,0,0, .14), 0 3px 1px -2px rgba(0,0,0, .2);
+    border-radius: 8px;
+}
+
+.main-content {
+    width: 100%;
+    padding: 1.5em 15px;
+    height: 100%;
+    /*max-width: 2500%;*/
+}
+
+.navbar-light .nav-item.active .nav-link,
+.navbar-light .nav-item .nav-link:active,
+.navbar-light .nav-item .nav-link:focus,
+.navbar-light .nav-item:hover .nav-link {
+    background-color: inherit;
+    color: #1e54d5;
+}
+
+.header {
+    text-align: center;
+}
+
+.create-form {
+    width: 35%;
+    margin-top: 2em;
+}
+
+.text-area {
+    resize: none;
+}
+.required {
+    font-size: 13px;
+    color: red;
+    letter-spacing: 0px;
+}
+
+.required-pos {
+    margin-left: 10px;
+}
+.form-control{
+    border-radius: 0.3rem !important;
+}
+.create-input {
+    width: 95%;
+}
+
+.box {
+    border-radius: 8px;
+    padding: 1.2em;
+    box-shadow: 0 1px 5px rgba(0,0,0,.2),0 2px 3px rgba(0,0,0,.14),0 3px 1px -3px rgba(0,0,0,.2);
+}
+.table thead th {
+    background: #3052D7;
+    color: #fff;
+}
+
+.table thead th:first-of-type {
+    border-top-left-radius: 8px;
+}
+
+.table thead th:last-of-type {
+    border-top-right-radius: 8px;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #6B74F5;
+    color: #fff;
+}
+
+.pph {
+    display:block;
+}
+
+.pp1b {
+    width: 33%;
+    text-align: left;
+    margin-top: 40px;
+}
+
+.ppContent {
+    letter-spacing: 0px;
+    cursor: pointer;
+    height: 100%;
+    border-radius: 8px;
+    padding: 5px;
+    border: 1px rgba(25, 25, 25, 0.32) solid;
+    float: left;
+    display: block;
+    margin-top: auto;
+    word-break: break-word;
+}
+
+.ppRow {
+    display: block;
+}
+.pphContent {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-top: auto;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+        background: #555;
+}
+

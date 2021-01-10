@@ -1,0 +1,37 @@
+﻿@using System.Web.Optimization
+@using Newtonsoft.Json
+@model List<Review.Web.Models.ReviewModel>
+<h2>Все отзывы</h2>
+<br />
+<div class="row">
+    <div class="col">
+        <table class="table table-striped box table-hover">
+            <thead>
+                <tr>
+                    <th scope="col"><p class="text-center">Название</p></th>
+                    <th scope="col"><p class="text-center">Адрес</p></th>
+                    <th scope="col"><p class="text-center">Оценка</p></th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: currentData">
+                <tr data-bind="click: $parent.showInfo">
+                    <td><p class="text-center" data-bind="text: Organization"></td>
+                    <td><p class="text-center" data-bind="text: Address"></td>
+                    <td><p class="text-center" data-bind="text: Rate"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- ko if: allData().length > 0 -->
+<div>
+    <button type="submit" class="btn btn-outline-primary" data-bind="click: showMore">Больше отзывов</button>
+</div>
+<!-- /ko -->
+@section Scripts{
+    @Scripts.Render("~/bundles/reviewList")
+    <script type="text/javascript">
+    var reviewListModel = reviewListModel(@Html.Raw(JsonConvert.SerializeObject(this.Model)));
+    ko.applyBindings(reviewListModel);
+    </script>
+}

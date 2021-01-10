@@ -1,0 +1,64 @@
+﻿@using System.Web.Optimization
+@using Newtonsoft.Json
+@model List<Review.Web.Models.AdminModel>
+<h2>Все отзывы</h2>
+<br />
+<div class="row">
+    <div class="col">
+        <table class="table table-striped box table-hover">
+            <thead>
+                <tr>
+                    <th scope="col"><p class="text-center">Название</p></th>
+                    <th scope="col"><p class="text-center">Адрес</p></th>
+                    <th scope="col"><p class="text-center">Оценка</p></th>
+                    <th scope="col"><p class="text-center">Удалить</p></th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: currentData">
+                <tr>
+                    <td><p class="text-center" data-bind="text: Organization, click: $parent.showInfo"></td>
+                    <td><p class="text-center" data-bind="text: Address, click: $parent.showInfo"></td>
+                    <td><p class="text-center" data-bind="text: Rate, click: $parent.showInfo"></td>
+                    <td>
+                        <div class="text-center">
+                            <a class="btn btn-danger text-center" data-toggle="modal" data-target="#deleteModal" data-bind="click: $parent.selectReview">
+                                <i class="fa fa-trash-o fa-lg"></i>
+                            </a>
+                        </div>                       
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Подтверждение действия</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Удалить отзыв?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                <button type="button" class="btn btn-primary" data-bind="click: deleteReview" data-dismiss="modal">Удалить</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ko if: allData().length > 0 -->
+<div>
+    <button type="submit" class="btn btn-outline-primary" data-bind="click: showMore">Больше отзывов</button>
+</div>
+<!-- /ko -->
+@section Scripts{
+    @Scripts.Render("~/bundles/reviewList")
+    <script type="text/javascript">
+    var reviewListModel = reviewListModel(@Html.Raw(JsonConvert.SerializeObject(this.Model)));
+    ko.applyBindings(reviewListModel);
+    </script>
+}

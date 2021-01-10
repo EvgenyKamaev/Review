@@ -1,0 +1,55 @@
+﻿@using System.Web.Optimization
+@model Review.Web.Models.ReviewInfoModel
+<h2>Подробная информация</h2>
+<br />
+<div class="container-fluid">
+    <div class="ppRow">
+            <div class="pphContent">
+                Пользователь:
+            </div>
+            <div class="ppContent">
+                @Model.UserName
+            </div>
+        </div>
+        <div class="ppRow">
+            <div class="pph">
+                <div class="pp1b">
+                    <div class="pphContent">
+                        Что понравилось:
+                    </div>
+                    <div class="ppContent">
+                    @Model.LikeMessage
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if (Model.DislikeMessage != null)
+        {
+            <div class="ppRow">
+                <div class="pph">
+                    <div class="pp1b">
+                        <div class="pphContent">
+                            Что не понравилось:
+                        </div>
+                        <div class="ppContent">
+                            @Model.DislikeMessage
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (Model.Comment != null)
+        {<div class="ppRow">
+                <div class="pph">
+                    <div class="pp1b">
+                        <div class="pphContent">
+                            Комментарий:
+                        </div>
+                        <div class="ppContent">
+                            @Model.Comment
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+</div>
