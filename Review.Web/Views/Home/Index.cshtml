@@ -58,46 +58,61 @@
             </select>
         </div>
     </div>
-    <button type="submit" class="btn btn-outline-primary">Отправить</button>
+    <div class="form-row">
+        <div style="margin-left: 5px;">
+            <button type="submit" class="btn btn-outline-primary">Отправить</button>
+        </div>
+        <div class="response" style="display: none; margin-top: -20px; margin-left: 40px;" >
+            @Html.Raw(File.ReadAllText(Server.MapPath("~/Content/load.svg")))
+        </div>
+    </div>
 </form>
 
-@section Scripts{
-    <script type="text/javascript">
-    (function () {
-            'use strict';
-             window.addEventListener('load', function () {
-                var forms = document.getElementsByClassName('needs-validation');
-                var validation = Array.prototype.filter.call(forms, function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();                           
-                        }
-                        if (form.checkValidity() === true) {
-                            event.preventDefault();
-                                var request = new Object();
-                                request.userName = $('#UserName').val();
-                                request.organization = $('#Organization').val();
-                                request.address = $('#Address').val();
-                                request.likeMessage = $('#LikeMessage').val();
-                                request.dislikeMessage = $('#DislikeMessage').val();
-                                request.comment = $('#Comment').val();
-                                request.rate = $('#Rate').val();
 
-                                $.ajax({
-                                  url: '/Home/CreateReview',
-                                  type: 'POST',
-                                  dataType: 'json',
-                                  data: request,
-                                  success: function (result) {
-                                        window.location.href = result.redirectUrl;
-                                                             }
-                                      })
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-    })();
-    </script>
+@section Scripts{
+<script type="text/javascript">
+(function () {
+     'use strict';
+ window.addEventListener('load', function () {
+   var forms = document.getElementsByClassName('needs-validation');
+   var validation = Array.prototype.filter.call(forms, function (form) {
+       form.addEventListener('submit', function (event) {
+       if (form.checkValidity() === false) {
+         event.preventDefault();
+         event.stopPropagation();                           
+       }
+       if (form.checkValidity() === true) {
+          var divs = document.getElementsByTagName('div');
+          for(var i = divs.length; i-- ;) {
+              var div = divs[i];
+              if(div.className === 'response') {
+                 div.style.display = 'flex';
+               }
+          }
+       event.preventDefault();
+       var request = new Object();
+       request.userName = $('#UserName').val();
+       request.organization = $('#Organization').val();
+       request.address = $('#Address').val();
+       request.likeMessage = $('#LikeMessage').val();
+       request.dislikeMessage = $('#DislikeMessage').val();
+       request.comment = $('#Comment').val();
+       request.rate = $('#Rate').val();
+                                
+       $.ajax({
+       url: '/Home/CreateReview',
+       type: 'POST',
+       dataType: 'json',
+       data: request,
+       success: function (result) {
+                     window.location.href = result.redirectUrl;                                     
+                }
+              })
+       }
+       form.classList.add('was-validated');
+       }, false);
+    });
+  }, false);
+})();
+</script>
 }
